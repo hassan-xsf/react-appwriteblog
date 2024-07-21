@@ -7,6 +7,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import {Header,Footer,Home,Login,Signup,Content,Error} from './components/index.js'
 import {Provider} from 'react-redux'
 import {store} from './store/authStore'
+import AddPost from './components/AddPost.jsx'
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: '/content',
         element: <Content/>
+      },
+      {
+        path: '/addpost',
+        element: <AddPost/>
       }
     ]
   }

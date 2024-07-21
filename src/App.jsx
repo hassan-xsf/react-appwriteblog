@@ -11,25 +11,18 @@ function App() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
-  const getSession = async () => {
-    try {
-      const sess = await authService.getUser();
-      if (sess) {
-        dispatch(authlogin(sess));
-      } else {
-        dispatch(authlogout());
-      }
-    }
-    catch(e) {
-      dispatch(authlogout());
-    }
-    
 
-  };
   useEffect(() => {
-    getSession();
-    setLoading(false);
-  }, []);
+    authService.getUser()
+      .then((account) => dispatch(authlogin(account)))
+      .catch((error) => {
+        dispatch(authlogout())
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+    
+  }, [])
 
   return (
     !loading ? (
